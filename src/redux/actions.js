@@ -11,3 +11,14 @@ export function decrement() {
     type: DECREMENT
   }
 }
+
+export function asyncIncrement() {
+  // Middleware for async operations
+  return function (dispatch) {
+    setTimeout(() => {
+      dispatch({
+        type: INCREMENT
+      })
+    }, 2000)
+  }
+}
