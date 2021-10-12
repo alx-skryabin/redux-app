@@ -49,9 +49,13 @@ themeBtn.addEventListener('click', () => {
 
 store.subscribe(() => {
   const state = store.getState()
-  counter.textContent = state.counter.toString()
 
-  document.body.className = state.theme.value
+  counter.textContent = state.counter.toString()
+  document.body.className = state.theme.value;
+
+  [addBtn, subBtn, themeBtn, asyncBtn].forEach(btn => {
+    btn.disabled = state.theme.disabled
+  })
 })
 
 // initialization and processing default state APP
