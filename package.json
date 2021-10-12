@@ -8,7 +8,9 @@
     "start": "webpack-dev-server --open",
     "build": "webpack --mode production"
   },
-  "keywords": ["redux"],
+  "keywords": [
+    "redux"
+  ],
   "author": "Alx-skryabin",
   "license": "ISC",
   "devDependencies": {

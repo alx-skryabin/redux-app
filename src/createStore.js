@@ -1,4 +1,5 @@
 // Observer pattern used
+// Native redux
 export function createStore(rootReducer, initialState) {
   // initialization default state
   let state = rootReducer(initialState, {type: '__INIT__'})
