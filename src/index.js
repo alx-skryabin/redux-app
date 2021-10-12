@@ -2,7 +2,7 @@ import {applyMiddleware, createStore} from 'redux'
 import thunk from 'redux-thunk'
 import logger from 'redux-logger'
 import {rootReducer} from './redux/rootReducer'
-import {asyncIncrement, decrement, increment} from './redux/actions'
+import {asyncIncrement, changeTheme, decrement, increment} from './redux/actions'
 import './styles.css'
 
 const counter = document.getElementById('counter')
@@ -26,7 +26,6 @@ const themeBtn = document.getElementById('theme')
 
 const store = createStore(
   rootReducer,
-  42,
   applyMiddleware(thunk, logger)
 )
 
@@ -43,11 +42,16 @@ asyncBtn.addEventListener('click', () => {
 })
 
 themeBtn.addEventListener('click', () => {
-  // document.body.classList.toggle('dark')
+  const newTheme = document.body.classList.contains('light')
+    ? 'dark' : 'light'
+  store.dispatch(changeTheme(newTheme))
 })
 
 store.subscribe(() => {
-  counter.textContent = store.getState().toString()
+  const state = store.getState()
+  counter.textContent = state.counter.toString()
+
+  document.body.className = state.theme.value
 })
 
 // initialization and processing default state APP
